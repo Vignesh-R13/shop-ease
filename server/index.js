@@ -20,7 +20,7 @@ app.use(express.json());
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:3000",
-  "https://shop-ease-frontend.vercel.app"
+  "http://shop-ease-zeta-neon.vercel.app"
 ];
 
 app.use(cors({

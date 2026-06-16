@@ -29,7 +29,7 @@ const AdminProductManagement = () => {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/products');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/products`);
       setProducts(res.data.data);
     } catch (err) {
       console.error(err);
@@ -44,10 +44,10 @@ const AdminProductManagement = () => {
     e.preventDefault();
     try {
       if (editingProduct) {
-        await axios.put(`http://localhost:5000/api/products/${editingProduct._id}`, formData);
+        await axios.put( `${import.meta.env.VITE_API_URL}/products/${editingProduct._id}`,formData);
         toast.success('Product updated!');
       } else {
-        await axios.post('http://localhost:5000/api/products', { ...formData, images: ["https://via.placeholder.com/300"] });
+       await axios.post( `${import.meta.env.VITE_API_URL}/products`,{ ...formData, images: ["https://via.placeholder.com/300"] });
         toast.success('Product created!');
       }
       setShowModal(false);
@@ -61,7 +61,7 @@ const AdminProductManagement = () => {
   const deleteProduct = async (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/products/${id}`);
+       await axios.delete( `${import.meta.env.VITE_API_URL}/products/${id}`);
         toast.success('Product deleted');
         fetchProducts();
       } catch (err) {

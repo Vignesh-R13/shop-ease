@@ -1,0 +1,155 @@
+.admin-dashboard {
+  display: flex;
+  min-height: calc(100vh - 80px); /* Adjust for navbar */
+  background: var(--bg-main);
+  padding: 0;
+}
+
+.admin-sidebar {
+  width: 280px;
+  border-right: 1px solid var(--border);
+  padding: 2rem 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 2rem 2rem;
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+
+.admin-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-nav button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.2rem 2rem;
+  color: var(--text-muted);
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  border-left: 4px solid transparent;
+  transition: all 0.3s;
+}
+
+.admin-nav button:hover, .admin-nav button.active {
+  background: rgba(99, 102, 241, 0.05);
+  color: var(--primary);
+  border-left-color: var(--primary);
+}
+
+.admin-main {
+  flex: 1;
+  padding: 3rem;
+  overflow-y: auto;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.admin-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  padding: 2rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.stat-icon.users { background: #6366f1; }
+.stat-icon.products { background: #ec4899; }
+.stat-icon.orders { background: #f59e0b; }
+.stat-icon.revenue { background: #10b981; }
+
+.stat-info p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.2rem;
+}
+
+.stat-info h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.trend {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.trend.positive { background: rgba(16, 185, 129, 0.1); color: #10b981; }
+
+.charts-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 2rem;
+}
+
+.chart-container {
+  padding: 2rem;
+  border-radius: 24px;
+}
+
+.chart-container h3 {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.admin-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+}
+
+@media (max-width: 1280px) {
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 1024px) {
+  .admin-sidebar { display: none; }
+}

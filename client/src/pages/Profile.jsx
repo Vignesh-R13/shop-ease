@@ -21,7 +21,7 @@ const Profile = () => {
   const fetchOrders = async () => {
     setLoadingOrders(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/orders/myorders');
+     const res = await axios.get(`${import.meta.env.VITE_API_URL}/orders/myorders`);
       setOrders(res.data.data);
     } catch (err) {
       console.error(err);

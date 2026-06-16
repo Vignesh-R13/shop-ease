@@ -20,7 +20,7 @@ const OrderManagement = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/orders');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/orders`);
       setOrders(res.data.data);
     } catch (err) {
       console.error(err);
@@ -32,7 +32,7 @@ const OrderManagement = () => {
 
   const handleStatusChange = async (orderId, newStatus) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/orders/${orderId}/status`, {
+      const res = await axios.put(`${import.meta.env.VITE_API_URL}/orders/${orderId}/status`, {
         status: newStatus
       });
       if (res.data.success) {

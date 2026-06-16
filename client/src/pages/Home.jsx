@@ -11,7 +11,7 @@ const Home = () => {
   useEffect(() => {
     const fetchFeatured = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/products?limit=4');
+        const res = await axios.get(`${import.meta.env.VITE_API_URL}/products?limit=4`);
         setFeaturedProducts(res.data.data);
       } catch (err) {
         console.error(err);

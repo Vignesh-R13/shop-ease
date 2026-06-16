@@ -29,7 +29,7 @@ const CouponManagement = () => {
   const fetchCoupons = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/coupons');
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/coupons`);
       setCoupons(res.data.data);
     } catch (err) {
       console.error(err);
@@ -55,7 +55,7 @@ const CouponManagement = () => {
     }
 
     try {
-      const res = await axios.post('http://localhost:5000/api/coupons', formData);
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/coupons`, formData);
       if (res.data.success) {
         toast.success('Coupon created successfully!');
         setShowModal(false);
@@ -76,7 +76,7 @@ const CouponManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this coupon?')) {
       try {
-        const res = await axios.delete(`http://localhost:5000/api/coupons/${id}`);
+        const res = await axios.delete(`${import.meta.env.VITE_API_URL}/coupons/${id}`);
         if (res.data.success) {
           toast.success('Coupon deleted');
           fetchCoupons();

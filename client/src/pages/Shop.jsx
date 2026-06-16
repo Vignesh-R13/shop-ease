@@ -22,7 +22,7 @@ const Shop = () => {
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      let url = `http://localhost:5000/api/products?page=${page}&sort=${sort}&limit=8`;
+      let url = `${import.meta.env.VITE_API_URL}/products?page=${page}&sort=${sort}&limit=8`;
       if (category) url += `&category=${category}`;
       if (search) url += `&name[regex]=${search}&name[options]=i`;
       

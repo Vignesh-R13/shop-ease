@@ -42,7 +42,7 @@ const Checkout = () => {
 
     setIsVerifyingCoupon(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/coupons/validate', {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/coupons/validate`, {
         code: couponCode
       });
       if (res.data.success) {
@@ -96,7 +96,7 @@ const Checkout = () => {
       }
 
       // 2. Fetch Razorpay key from backend config route
-      const configRes = await axios.get('http://localhost:5000/api/config/razorpay');
+      const configRes = await axios.get(`${import.meta.env.VITE_API_URL}/config/razorpay`);
       const rzpKeyId = configRes.data.key;
 
       const shippingPrice = cartTotal > 100 ? 0 : 15;
@@ -120,7 +120,7 @@ const Checkout = () => {
       };
 
       // 3. Create local Order + Razorpay Order in Backend
-      const orderRes = await axios.post('http://localhost:5000/api/orders', orderData);
+      const orderRes = await axios.post(`${import.meta.env.VITE_API_URL}/orders`, orderData);
       const { data: createdOrder, razorpayOrder } = orderRes.data;
 
       // 4. Open Razorpay Checkout Window
@@ -136,7 +136,7 @@ const Checkout = () => {
           setIsPlacingOrder(true);
           try {
             // Verify payment signature in backend
-            const verifyRes = await axios.post('http://localhost:5000/api/orders/verify', {
+            const verifyRes = await axios.post(`${import.meta.env.VITE_API_URL}/orders/verify`, {
               razorpay_order_id: response.razorpay_order_id,
               razorpay_payment_id: response.razorpay_payment_id,
               razorpay_signature: response.razorpay_signature,

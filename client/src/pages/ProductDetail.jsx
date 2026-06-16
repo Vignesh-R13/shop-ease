@@ -32,7 +32,7 @@ const ProductDetail = () => {
     }
     setIsSubmittingReview(true);
     try {
-      const res = await axios.post(`http://localhost:5000/api/products/${id}/reviews`, {
+      const res = await axios.post( `${import.meta.env.VITE_API_URL}/products/${id}/reviews`, {
         rating,
         comment
       });
@@ -41,7 +41,7 @@ const ProductDetail = () => {
         setComment('');
         setRating(5);
         // Refresh product details to show the new review
-        const updatedProduct = await axios.get(`http://localhost:5000/api/products/${id}`);
+       const updatedProduct = await axios.get( `${import.meta.env.VITE_API_URL}/products/${id}`);
         setProduct(updatedProduct.data.data);
       }
     } catch (err) {
@@ -54,7 +54,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/products/${id}`);
+       const res = await axios.get(`${import.meta.env.VITE_API_URL}/products/${id}`);
         setProduct(res.data.data);
       } catch (err) {
         console.error(err);
